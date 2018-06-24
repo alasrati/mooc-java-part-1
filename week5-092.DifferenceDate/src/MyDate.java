@@ -3,9 +3,9 @@ public class MyDate {
     private int month;
     private int year;
 
-    public MyDate(int day, int montd, int year) {
+    public MyDate(int day, int month, int year) {
         this.day = day;
-        this.month = montd;
+        this.month = month;
         this.year = year;
     }
 
@@ -30,4 +30,15 @@ public class MyDate {
         return false;
     }
 
+    public int differenceInYears(MyDate compareDate) {
+        int days = this.day + 30 * this.month + 365 * this.year;
+        int compareDays = compareDate.day + 30 * compareDate.month + 365 * compareDate.year;
+        int differenceInDays = 0;
+        if (this.earlier(compareDate)) {
+            differenceInDays = compareDays - days;
+        } else {
+            differenceInDays = days - compareDays;
+        }
+        return (differenceInDays - (differenceInDays % 365)) / 365;
+    }
 }
